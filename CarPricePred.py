@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 
 car_dataset = pd.read_csv('car data.csv')
 # encoding "Fuel_Type" Column
@@ -12,7 +12,7 @@ car_dataset.replace({'Transmission':{'Manual':0,'Automatic':1}},inplace=True)
 X = car_dataset.drop(['Car_Name','Selling_Price'],axis=1)
 Y = car_dataset['Selling_Price']
 
-regressor = DecisionTreeRegressor(random_state = 0)
+regressor =  RandomForestRegressor(n_estimators = 10, random_state = 0)
 regressor.fit(X,Y)
 
 print(regressor.predict([[2015,5.09,35500,2,0,0,0]]))
